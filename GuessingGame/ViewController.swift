@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         }
         
         let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
-        if(questionsAsked == 4) {
+        if(questionsAsked == 10) {
             ac.title = "GAME OVER"
             ac.message = "Your final score is \(score)"
             ac.addAction(UIAlertAction(title: "Stop", style: .default))
