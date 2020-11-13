@@ -14,13 +14,20 @@ class ViewController: UIViewController {
     @IBOutlet var button3: UIButton!
     
     var countries = [String]()
-    var score = 0
+    var score:Int = 0 {
+        didSet {
+            navigationItem.rightBarButtonItem?.title = "Score: \(score)"
+        }
+    }
     var correctAnswer = 0
     var questionsAsked = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        score = 0
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Score", style: .plain, target: nil, action: #selector(buttonTapped))
         
         countries += ["Estonia","France","Germany", "Ireland", "Italy", "Monaco", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"]
         
@@ -44,11 +51,11 @@ class ViewController: UIViewController {
         button2.setImage((UIImage(named: countries[1])), for: .normal)
         button3.setImage((UIImage(named: countries[2])), for: .normal)
         
-        title = "\(countries[correctAnswer].uppercased())        Total score is:  \(score)"
+        title = "\(countries[correctAnswer].uppercased())"
     }
 
     
-    @IBAction func buttonTapped(_ sender: UIButton) {
+    @objc @IBAction func buttonTapped(_ sender: UIButton) {
         var title: String
         
         if sender.tag == correctAnswer {
